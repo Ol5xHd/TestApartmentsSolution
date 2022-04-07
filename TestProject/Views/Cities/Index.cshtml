@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TestProject.Models.CityView>
+
+@{
+    ViewBag.Title = "Города";
+}
+
+<h2>Города</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Id города
+        </th>
+        <th>
+            Название города
+        </th>
+        <th>
+            Количество улиц
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href = '@Url.Action("GetByCity", "Streets", new { id = item.CityId })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.CityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetsCount)
+            </td>
+        </tr>
+    }
+
+</table>

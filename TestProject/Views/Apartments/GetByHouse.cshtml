@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TestProject.Models.ApartmentView>
+
+@{
+    ViewBag.Title = "Дома";
+}
+
+@Html.ActionLink($"Назад к домам улицы {ViewData["StreetName"]} города {ViewData["CityName"]}", "GetByStreet", "Houses", new { id = ViewData["StreetId"] }, new { })
+
+<h2>Квартиры дома @ViewData["HouseNumber"] улицы @ViewData["StreetName"] города @ViewData["CityName"]</h2>
+
+@using (Html.BeginForm("GetByHouse", "Apartments", FormMethod.Get))
+{
+    <input type="hidden" value="@ViewData["HouseId"]" name="id" />
+    <label>Площадь от: <input type="number" value="@ViewData["AreaFrom"]" name="areaFrom"></label>
+    <label>до: <input type="number" value="@ViewData["AreaUpTo"]" name="areaUpTo"></label>
+    <p><input type="submit" value="Отобрать" /></p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Id квартиры
+        </th>
+        <th>
+            Площадь квартиры
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentArea)
+            </td>
+        </tr>
+    }
+
+</table>

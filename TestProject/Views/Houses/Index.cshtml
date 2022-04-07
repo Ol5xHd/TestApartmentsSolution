@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TestProject.Models.House>
+
+@{
+    ViewBag.Title = "Все дома";
+}
+
+<h2>Все дома</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetID)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetID)
+            </td>
+        </tr>
+    }
+
+</table>

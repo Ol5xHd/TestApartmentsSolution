@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TestProject.Models.StreetView>
+
+@{
+    ViewBag.Title = "Улицы";
+}
+
+<p>
+    @Html.ActionLink("Назад к городам", "Index", "Cities")
+</p>
+
+<h2>Улицы города @ViewData["CityName"]</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Id улицы
+        </th>
+        <th>
+            Название улицы
+        </th>
+        <th>
+            Количество домов
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href = '@Url.Action("GetByStreet", "Houses", new { id = item.StreetId })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HousesCount)
+            </td>
+        </tr>
+    }
+
+</table>

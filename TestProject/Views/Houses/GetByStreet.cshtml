@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TestProject.Models.HouseView>
+
+@{
+    ViewBag.Title = "Дома";
+}
+
+@Html.ActionLink($"Назад к улицам города {ViewData["CityName"]}", "GetByCity", "Streets", new { id = ViewData["CityId"] }, new { })
+
+<h2>Дома улицы @ViewData["StreetName"] города @ViewData["CityName"]</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Id дома
+        </th>
+        <th>
+            Номер дома
+        </th>
+        <th>
+            Количество квартир
+        </th>
+        <th>
+            Общая площадь квартир
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href = '@Url.Action("GetByHouse", "Apartments", new { id = item.HouseId })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentsCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonArea)
+            </td>
+        </tr>
+    }
+
+</table>
